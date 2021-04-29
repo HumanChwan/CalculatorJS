@@ -26,7 +26,7 @@ let expressionParser = (expression) => {
     for(let i = 0; i < expression.length; ++i) {
         if(precedence(expression[i]) || expression[i] === '(' || expression[i] === ')') {
             if(expression[i] === '+' || expression[i] === '-') {
-                if(!i || precedence(expression[i-1])){
+                if(!i || precedence(expression[i-1]) || expression[i-1] === '('){
                     cache += '0';
                 }
             }
