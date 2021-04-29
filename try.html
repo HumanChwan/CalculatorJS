@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--link href="css/bootstrap.css" rel="stylesheet"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Try</title>
+</head>
+<body>
+    <div class="mode">
+        <span class="mode-shift">Light: </span>
+        <input type="checkbox" name="mode-check" id="mode-check" class="mode-check" onclick="modeChange()">
+    </div>
+    <div class="input-output-wrapper">
+        <div class="input">
+            <form>
+                <label for="single" class="label">Enter: </label>
+                <input type="text" id="single" class="text" autocomplete="off">
+                <br><br>
+                <div class="place_btn">
+                    <button type="button" id="btn" class="btn" onclick="main()">Evaluate</button>
+                </div>
+            </form>
+        </div>
+        <div class="output">
+            <p id="Answer"></p>
+        </div>
+    </div>
+    <script src="F.js"></script>
+</body>
+</html>

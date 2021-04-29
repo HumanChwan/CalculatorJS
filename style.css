@@ -1,0 +1,115 @@
+body {
+    background: #212529;
+    font-family: 'Courier New', Courier, monospace;
+    --primary-color: #212529;
+    --secondary-color: whitesmoke;
+    --focus-color: #292b2e;
+}
+
+.light {
+    background-color: whitesmoke;
+    color: #212529;
+    --primary-color: whitesmoke;
+    --secondary-color: #212529;
+    --focus-color: #d8d7d7;
+}
+
+.input-output-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    top: 35%;
+    width: 100%;
+    justify-content: center;
+    margin-top: 22.5%;
+    /*position: absolute;*/
+}
+
+.input {
+    text-align: center;
+}
+
+.mode {
+    width: 100%;
+    text-align: right;
+    color: var(--secondary-color);
+}
+
+.mode-shift {
+    vertical-align: 40%;
+}
+
+.mode-check {
+    -webkit-appearance: none;
+    background-color: var(--secondary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+	border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    height: 12px;
+    width: 12px;
+} 
+
+/*input:checked {
+    background-color: var(--secondary-color);
+    color: var(--secondary-color);
+}*/
+
+.place_btn {
+    position: relative;
+    text-align: center;
+
+}
+
+.answer-wrong {
+    color: red;
+}
+
+.output {
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    color: var(--secondary-color); 
+}
+
+.text {
+    font-size: 24px;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;*/
+    background-color:  var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.text:focus {
+    background-color: var(--focus-color);
+    outline: none
+}
+
+.btn {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border-radius: 5%;
+    border: none;
+    border-bottom: 0.125rem solid var(--secondary-color);
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btn:hover {
+    background-color: (var(--secondary-color));
+    color:  var(--primary-color);
+}
