@@ -162,4 +162,8 @@ function main() {
 
 function modeChange() {
     document.body.classList.toggle('light');
+    if(document.body.classList.contains('light'))
+        document.getElementById('mode-shift').innerHTML = 'Dark :';
+    else 
+        document.getElementById('mode-shift').innerHTML = 'Light :'
 }
