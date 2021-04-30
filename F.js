@@ -134,7 +134,7 @@ let clickMeNya = document.getElementById("btn");
 function main() {
 
     let expression = document.getElementById("single").value;
-
+    expression = expression.replace('x', '*');
     let answer = evaluate(infixToPostfix(expressionParser(expression)));
     // document.getElementById("postfix").innerHTML = infixToPostfix(expressionParser(expression));
     if(typeof answer === 'undefined' || isNaN(answer)) {
