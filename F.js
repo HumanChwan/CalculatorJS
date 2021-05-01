@@ -129,29 +129,73 @@ let evaluate = (postfixList) => {
 
 
 
-let clickMeNya = document.getElementById("btn");
+let infix = [];
+let cache = '';
+let main_expression = document.getElementById('main-expr');
+let answer = document.getElementById("Answer");
 
 function main() {
 
-    let expression = document.getElementById("single").value;
-    expression = expression.replace('x', '*');
-    let answer = evaluate(infixToPostfix(expressionParser(expression)));
+    // let expression = document.getElementById("single").value;
+    // expression = expression.replace('x', '*');
+    if(cache.length)
+        infix.push(cache);
+        cache = '';
+    // let answer = evaluate(infixToPostfix(expressionParser(expression)));
+    let answer = evaluate(infixToPostfix(infix));
     // document.getElementById("postfix").innerHTML = infixToPostfix(expressionParser(expression));
     if(typeof answer === 'undefined' || isNaN(answer)) {
         document.getElementById("Answer").innerHTML = 'Input Error :(';
-        let p = document.getElementById("Answer");
-        p.classList.add("answer-wrong");
+        answer.classList.add("answer-wrong");
     } else if(answer === Infinity) {
         document.getElementById("Answer").innerHTML = 'Dividing by Zero is bad boi move';
-        let p = document.getElementById("Answer");
-        p.classList.add("answer-wrong");
+        answer.classList.add("answer-wrong");
     } else {
         document.getElementById("Answer").innerHTML = 'Answer : ' + answer;
-        let p = document.getElementById("Answer");
-        p.classList.remove('answer-wrong');
+        answer.classList.remove('answer-wrong');
     }
+    infix = [];
+    main_expression.innerHTML = `&nbsp;`
+    cache = '';
 };
 
+
+function clear_main() {
+    infix = [];
+    cache = '';
+    main_expression.innerHTML = `&nbsp;`
+    answer.innerHTML = '';
+}
+
+function backspace() {
+    if(cache.length) 
+        infix.push(cache);
+    let last_added = infix.pop();
+    if(!precedence(last_added) && last_added != '(' && last_added != ')') {
+        try {
+            last_added = last_added.slice(0, -1);
+            if(last_added.length){
+                infix.push(last_added);
+                cache = last_added;
+            } else {
+                cache = '';
+            }
+        } catch ( er ){
+            infix = [];
+        }
+       
+    }
+    last_added = main_expression.innerHTML;
+    if(last_added != `&nbsp;`)  {
+        try {
+            last_added = last_added.slice(0, -1);
+        } catch ( er ){
+            last_added = `&nbsp;`;
+        }
+    }
+
+    main_expression.innerHTML = last_added;
+}
 
 // clickMeNya.addEventListener('mousedown', () => {
 //     document.getElementById('btn').classList.add('press');
@@ -166,4 +210,22 @@ function modeChange() {
         document.getElementById('mode-shift').innerHTML = 'Dark :';
     else 
         document.getElementById('mode-shift').innerHTML = 'Light :'
-}
+};
+
+
+
+function add(toBeAdded) {   
+    if(precedence(toBeAdded) || toBeAdded === '(' || toBeAdded === ')') {
+        infix.push(cache);
+        cache = '';
+        infix.push(toBeAdded);
+    } else {
+        cache += toBeAdded;
+    }
+    if(toBeAdded === '*') 
+        toBeAdded = '×'
+    else if(toBeAdded === '/')
+        toBeAdded = '÷';
+    main_expression.innerHTML += toBeAdded;
+};
+
