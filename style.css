@@ -4,7 +4,8 @@ body {
     color: whitesmoke;
     --primary-color: #212529;
     --secondary-color: whitesmoke;
-    --focus-color: #292b2e;
+    --focus-color: #3a3942;
+    --operator-color: yellow;
 }
 
 .light {
@@ -13,6 +14,7 @@ body {
     --primary-color: whitesmoke;
     --secondary-color: #212529;
     --focus-color: #d8d7d7;
+    --operator-color: #f0ad00;
 }
 
 .input-output-wrapper {
@@ -28,15 +30,16 @@ body {
 .input {
     width: 100%;
 }
-/*
-.left {
-    width: 34%;
+
+/*#open-parenthesis {
+    position: absolute;
+    right: 0;
 }
 
-.right {
-    width: 33%;
-}
-*/
+#close-parenthesis {
+    position: absolute;
+}*/
+
 .mode {
     width: 100%;
     text-align: right;
@@ -97,14 +100,19 @@ body {
     grid-template-columns: repeat(3, 33%);
 }
 
+
 .btn-container {
     position: relative;
     margin: 25px;
     align-content: center;
     display: grid;
     text-align: center;
-    grid-template-columns: repeat(4, 2fr);
+    grid-template-columns: repeat(5, 1fr);
     position: relative;
+}
+
+.operator {
+    color: var(--operator-color);
 }
 
 .text:focus {
@@ -126,9 +134,21 @@ body {
     color: var(--secondary-color);
 }
 
+.regular {
+    color: var(--secondary-color);
+}
+
+.parenthesis {
+    color: red;
+}
+
+.zero {
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+
 .btn {
     background-color: transparent;
-    color: var(--secondary-color);
     border-radius: 5%;
     border: none;
     margin: 18px;

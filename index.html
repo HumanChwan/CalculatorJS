@@ -33,32 +33,36 @@
                 <div class="log"></div>
                 <div class="btn-container">
 
-                    <button class="btn" id="/" onclick="add('/')">÷</button>
-                    <button class="btn" id="*" onclick="add('*')">×</button>
-                    <button class="btn" id="+" onclick="add('+')">+</button>
-                    <button class="btn" id="-" onclick="add('-')">-</button>
+                    <button class="btn operator" id="/" onclick="add('/')">÷</button>
+                    <button class="btn operator" id="*" onclick="add('*')">×</button>
+                    <button class="btn operator" id="+" onclick="add('+')">+</button>
+                    <button class="btn operator" id="-" onclick="add('-')">-</button>
+                    <button class="btn operator" id="^" onclick="add('^')">^</button>
             
-                    <button class="btn" id="1" onclick="add('1')">1</button>
-                    <button class="btn" id="2" onclick="add('2')">2</button>
-                    <button class="btn" id="3" onclick="add('3')">3</button>
-                    <button class="btn" id="3" onclick="clear_main()">AC</button>
+                    <button class="btn regular" id="1" onclick="add('1')">1</button>
+                    <button class="btn regular" id="2" onclick="add('2')">2</button>
+                    <button class="btn regular" id="3" onclick="add('3')">3</button>
+                    <button class="btn parenthesis" id="open-parenthesis" onclick="add('(')">(</button>
+                    <button class="btn regular" id="clear-main" onclick="clear_main()">AC</button>
 
-                    <button class="btn" id="4" onclick="add('4')">4</button>
-                    <button class="btn" id="5" onclick="add('5')">5</button>
-                    <button class="btn" id="6" onclick="add('6')">6</button>
-                    <button class="btn" id="3" onclick="backspace()">CE</button>
+                    <button class="btn regular" id="4" onclick="add('4')">4</button>
+                    <button class="btn regular" id="5" onclick="add('5')">5</button>
+                    <button class="btn regular" id="6" onclick="add('6')">6</button>
+                    <button class="btn parenthesis" id="close-parenthesis" onclick="add(')')">)</button>
+                    <button class="btn regular" id="back-space" onclick="backspace()">CE</button>
 
-                    <button class="btn" id="7" onclick="add('7')">7</button>
-                    <button class="btn" id="8" onclick="add('8')">8</button>
-                    <button class="btn" id="9" onclick="add('9')">9</button>
-                    <button class="btn" id="0" onclick="add('0')">0</button>
+                    <button class="btn regular" id="7" onclick="add('7')">7</button>
+                    <button class="btn regular" id="8" onclick="add('8')">8</button>
+                    <button class="btn regular" id="9" onclick="add('9')">9</button>
+                    <button class="btn regular zero" id="0" onclick="add('0')">0</button>
+                    <!--button class="hide"></button-->
                     
                 </div> 
                 <div class="functions"></div>
             </div>
             <div class="gap"></div>
             <div class="btn-submit">
-                <button class="btn" id="submit" onclick="main()">Evaluate</button>
+                <button class="btn regular" id="submit" onclick="main()">Evaluate</button>
             </div>
             
         </div>

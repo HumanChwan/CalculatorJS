@@ -135,28 +135,26 @@ let main_expression = document.getElementById('main-expr');
 let answer = document.getElementById("Answer");
 
 function main() {
-
-    // let expression = document.getElementById("single").value;
-    // expression = expression.replace('x', '*');
     if(cache.length)
         infix.push(cache);
-        cache = '';
-    // let answer = evaluate(infixToPostfix(expressionParser(expression)));
+    
     let answer = evaluate(infixToPostfix(infix));
-    // document.getElementById("postfix").innerHTML = infixToPostfix(expressionParser(expression));
+    
+    let toBeDisplayed = document.getElementById('Answer');
     if(typeof answer === 'undefined' || isNaN(answer)) {
-        document.getElementById("Answer").innerHTML = 'Input Error :(';
-        answer.classList.add("answer-wrong");
+        toBeDisplayed.innerHTML = 'Input Error :('
+        toBeDisplayed.classList.add('answer-wrong')
+
     } else if(answer === Infinity) {
-        document.getElementById("Answer").innerHTML = 'Dividing by Zero is bad boi move';
-        answer.classList.add("answer-wrong");
+        toBeDisplayed.innerHTML = 'Dividing by Zero is bad boi move'
+        toBeDisplayed.classList.add('answer-wrong')
+
     } else {
-        document.getElementById("Answer").innerHTML = 'Answer : ' + answer;
-        answer.classList.remove('answer-wrong');
+        toBeDisplayed.innerHTML = 'Answer : ' + answer
+        toBeDisplayed.classList.remove('answer-wrong')
+
     }
-    infix = [];
-    main_expression.innerHTML = `&nbsp;`
-    cache = '';
+    infix.pop()
 };
 
 
@@ -171,7 +169,7 @@ function backspace() {
     if(cache.length) 
         infix.push(cache);
     let last_added = infix.pop();
-    if(!precedence(last_added) && last_added != '(' && last_added != ')') {
+    if('0' <= last_added && last_added <= '9') {
         try {
             last_added = last_added.slice(0, -1);
             if(last_added.length){
@@ -182,10 +180,11 @@ function backspace() {
             }
         } catch ( er ){
             infix = [];
+            cache = ''
         }
        
     }
-    last_added = main_expression.innerHTML;
+    last_added = main_expression.innerText;
     if(last_added != `&nbsp;`)  {
         try {
             last_added = last_added.slice(0, -1);
@@ -193,16 +192,18 @@ function backspace() {
             last_added = `&nbsp;`;
         }
     }
-
-    main_expression.innerHTML = last_added;
+    let finalText = '';
+    for(let i = 0; i < last_added.length; ++i) {
+        if(precedence(last_added[i])) {
+            finalText += `<span class="operator">` + last_added[i] + '</span>';
+        } else if (last_added[i] === '(' || last_added[i] === ')') {
+            finalText += `<span class="parenthesis">` + last_added[i] + '</span>';
+        } else {
+            finalText += last_added[i];
+        }
+    }
+    main_expression.innerHTML = finalText;
 }
-
-// clickMeNya.addEventListener('mousedown', () => {
-//     document.getElementById('btn').classList.add('press');
-// });
-// clickMeNya.addEventListener('mouseup', () => {
-//     document.getElementById('btn').classList.remove('press');
-// });
 
 function modeChange() {
     document.body.classList.toggle('light');
@@ -216,7 +217,9 @@ function modeChange() {
 
 function add(toBeAdded) {   
     if(precedence(toBeAdded) || toBeAdded === '(' || toBeAdded === ')') {
-        infix.push(cache);
+        if (cache) {
+            infix.push(cache);
+        }
         cache = '';
         infix.push(toBeAdded);
     } else {
@@ -226,6 +229,13 @@ function add(toBeAdded) {
         toBeAdded = '×'
     else if(toBeAdded === '/')
         toBeAdded = '÷';
-    main_expression.innerHTML += toBeAdded;
+
+    if (precedence(toBeAdded)){
+        main_expression.innerHTML += `<span class="operator">`+toBeAdded+`</span>`;
+    } else if (toBeAdded === '(' || toBeAdded === ')') {
+        main_expression.innerHTML += `<span class="parenthesis">`+toBeAdded+`</span>`;
+    } else {
+        main_expression.innerHTML += toBeAdded;
+    }
 };
 
