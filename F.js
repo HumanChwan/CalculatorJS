@@ -154,7 +154,9 @@ function main() {
         toBeDisplayed.classList.remove('answer-wrong')
 
     }
-    infix.pop()
+    let last = infix.pop();
+    if(last <= '0' || '9' >= last)
+        infix.push(last); 
 };
 
 
